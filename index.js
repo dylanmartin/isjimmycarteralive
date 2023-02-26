@@ -6,8 +6,7 @@ const {getAnswer, generatePrompt} = require('./gpt.js');
         const newsArticles = await getNews(searchString);
         const prompt = generatePrompt(question, newsArticles);
         const answer = await getAnswer(prompt);
-        console.log(`based on the ${newsArticles.length} news articles:`)
-        console.log(answer);
+        console.log(`based on ${newsArticles.length} news articles, the answer to "${question}" is ${answer.answer} with a confidence of ${answer.confidence}}`)
     } catch (err) {
         console.log(err)
     }
