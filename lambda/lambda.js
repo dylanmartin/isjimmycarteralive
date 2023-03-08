@@ -16,11 +16,8 @@ exports.handler = async (event, context) => {
         };
         const questionObject = await s3.getObject(questionParams).promise();
         const { searchString, question } = JSON.parse(questionObject.Body.toString());
-        
-        console.log({ question });
-        // Perform the search and digest the results
+        // Perform the search and digest the results uising gpt-3
         const result = await searchAndDigest(searchString, question);
-        console.log({ result })
         // Upload the result to S3
         const resultParams = {
             Bucket: bucket,
@@ -32,13 +29,13 @@ exports.handler = async (event, context) => {
 
         return {
             statusCode: 200,
-            body: 'Result saved to S3'
+            body: 'result uploaded to s3'
         };
     } catch (err) {
         console.error(err);
         return {
             statusCode: 500,
-            body: 'Error saving result to S3'
+            body: err.toString()
         };
     }
 };
