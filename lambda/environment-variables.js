@@ -1,0 +1,6 @@
+module.exports= {
+    S3_BUCKET: process.env.S3_BUCKET,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    GOOGLE_CUSTOM_SEARCH_API_KEY: process.env.GOOGLE_CUSTOM_SEARCH_API_KEY,
+    GOOGLE_SEARCH_ENGINE_ID: process.env.GOOGLE_SEARCH_ENGINE_ID,
+}
