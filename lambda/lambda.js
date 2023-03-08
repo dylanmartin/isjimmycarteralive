@@ -16,7 +16,7 @@ exports.handler = async (event, context) => {
         };
         const questionObject = await s3.getObject(questionParams).promise();
         const { searchString, question } = JSON.parse(questionObject.Body.toString());
-        // Perform the search and digest the results uising gpt-3
+        // Perform the search and digest the results using gpt-3
         const result = await searchAndDigest(searchString, question);
         // Upload the result to S3
         const resultParams = {
