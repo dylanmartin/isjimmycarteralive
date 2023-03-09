@@ -1,6 +1,9 @@
-const {searchAndDigest} = require('./lambda/search-and-digest.js');
+const { resultToMessageContent, sendDiscordMessage } = require("./lambda/discord");
+const { searchAndDigest } = require("./lambda/search-and-digest");
 
-(async (searchString, question) => {
-    const result = await searchAndDigest(searchString, question);
-    console.log(result);
-})("jimmy carter", "is jimmy carter alive?")
+(async ()=>{
+    const result = await searchAndDigest("Is Jimmy Carter Alive?", "Is Jimmy Carter alive?")
+    const messageContent = resultToMessageContent(result)
+    await sendDiscordMessage(messageContent)
+
+})()

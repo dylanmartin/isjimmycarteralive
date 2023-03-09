@@ -2,6 +2,7 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 const { searchAndDigest } = require('./search-and-digest.js');
 const { S3_BUCKET } = require('./environment-variables.js');
+const { sendDiscordMessage, resultToMessageContent } = require('./discord.js');
 
 exports.handler = async (event, context) => {
     const bucket = S3_BUCKET;
@@ -26,6 +27,10 @@ exports.handler = async (event, context) => {
             ContentType: 'application/json'
         };
         await s3.putObject(resultParams).promise();
+
+        // send the result to discord
+        const messageContent = resultToMessageContent(result);
+        await sendDiscordMessage(messageContent);
 
         return {
             statusCode: 200,

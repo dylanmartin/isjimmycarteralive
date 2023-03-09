@@ -47,13 +47,8 @@ export default function (props) {
     return (
         <div>
             <h1>{data.question}</h1>
-            <h2>{data.answer ? "Yes." : "No"}</h2>
+            <h2>{data.answer ? "Yes." : "No."}</h2>
             <h3>Last checked {createTimeAgoString(currentTime, data.time)} ago</h3>
-            <div>
-                <code>
-                    {JSON.stringify(data, null, 2)}
-                </code>
-            </div>
         </div>
     );
 }
